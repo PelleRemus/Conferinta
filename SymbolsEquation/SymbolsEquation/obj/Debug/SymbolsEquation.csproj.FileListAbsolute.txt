@@ -1,0 +1,7 @@
+D:\Files\#Github\Conferinta\SymbolsEquation\SymbolsEquation\obj\Debug\SymbolsEquation.csprojAssemblyReference.cache
+D:\Files\#Github\Conferinta\SymbolsEquation\SymbolsEquation\obj\Debug\SymbolsEquation.csproj.CoreCompileInputs.cache
+D:\Files\#Github\Conferinta\SymbolsEquation\SymbolsEquation\bin\Debug\SymbolsEquation.exe.config
+D:\Files\#Github\Conferinta\SymbolsEquation\SymbolsEquation\bin\Debug\SymbolsEquation.exe
+D:\Files\#Github\Conferinta\SymbolsEquation\SymbolsEquation\bin\Debug\SymbolsEquation.pdb
+D:\Files\#Github\Conferinta\SymbolsEquation\SymbolsEquation\obj\Debug\SymbolsEquation.exe
+D:\Files\#Github\Conferinta\SymbolsEquation\SymbolsEquation\obj\Debug\SymbolsEquation.pdb
