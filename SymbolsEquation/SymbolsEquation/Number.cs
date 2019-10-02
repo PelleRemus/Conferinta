@@ -34,10 +34,10 @@ namespace SymbolsEquation
             }
             grade = "x" + newValues[1].symbolPower + "y" + newValues[2].symbolPower + "z" + newValues[3].symbolPower;
 
-            for (int i = values.Count - 1; i > 0; i--)
+            for (int i = newValues.Count - 1; i > 0; i--)
                 if (newValues[i].symbolPower == 0 || newValues[i].symbol == Symbols.Null)
                     newValues.RemoveAt(i);
-            if (newValues[0].real == 1)
+            if (newValues.Count != 1 && newValues[0].real == 1)
                 newValues.RemoveAt(0);
 
             values = newValues;
