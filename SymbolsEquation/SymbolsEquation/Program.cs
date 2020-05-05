@@ -9,8 +9,8 @@ namespace SymbolsEquation
             Equation e = new Equation();
             Number n1 = new Number();
             n1.values.Add(new Symbol(2, 3, Symbols.x, 1));
-            n1.values.Add(new Symbol(1, 1, Symbols.y, 1));
-            n1.values.Add(new Symbol(1, 1, Symbols.z, 1));
+            n1.values.Add(new Symbol(4, 1, Symbols.y, 1));
+            n1.values.Add(new Symbol(7, 1, Symbols.z, 1));
             e.values.Add(n1);
 
             Number n2 = new Number();
