@@ -1,0 +1,10 @@
+D:\Files\#Github\Conferinta\AgentsNecessities\AgentsNecessities\bin\Debug\AgentsNecessities.exe.config
+D:\Files\#Github\Conferinta\AgentsNecessities\AgentsNecessities\bin\Debug\AgentsNecessities.exe
+D:\Files\#Github\Conferinta\AgentsNecessities\AgentsNecessities\bin\Debug\AgentsNecessities.pdb
+D:\Files\#Github\Conferinta\AgentsNecessities\AgentsNecessities\obj\Debug\AgentsNecessities.csprojAssemblyReference.cache
+D:\Files\#Github\Conferinta\AgentsNecessities\AgentsNecessities\obj\Debug\AgentsNecessities.Form1.resources
+D:\Files\#Github\Conferinta\AgentsNecessities\AgentsNecessities\obj\Debug\AgentsNecessities.Properties.Resources.resources
+D:\Files\#Github\Conferinta\AgentsNecessities\AgentsNecessities\obj\Debug\AgentsNecessities.csproj.GenerateResource.cache
+D:\Files\#Github\Conferinta\AgentsNecessities\AgentsNecessities\obj\Debug\AgentsNecessities.csproj.CoreCompileInputs.cache
+D:\Files\#Github\Conferinta\AgentsNecessities\AgentsNecessities\obj\Debug\AgentsNecessities.exe
+D:\Files\#Github\Conferinta\AgentsNecessities\AgentsNecessities\obj\Debug\AgentsNecessities.pdb
