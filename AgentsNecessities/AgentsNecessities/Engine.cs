@@ -33,30 +33,17 @@ namespace AgentsNecessities
             DrawPlaces();
             f.pictureBox1.Image = bmp;
         }
+
         public static void ReadFromFile(string file)
         {
             TextReader dataLoad = new StreamReader(file);
-            string buffer = dataLoad.ReadLine();
-            n = int.Parse(buffer);
+            n = int.Parse(dataLoad.ReadLine());
 
             for (int i = 0; i < n; i++)
-            {
-                buffer = dataLoad.ReadLine();
-                string[] data = buffer.Split(' ');
-
-                Point location = new Point(int.Parse(data[1]), int.Parse(data[2]));
-                float gain = float.Parse(data[3]);
-                float cost = float.Parse(data[4]);
-
-                switch (data[0])
-                {
-                    case "W": places.Add(new Work(location, gain, cost)); break;
-                    case "R": places.Add(new Restaurant(location, gain, cost)); break;
-                    default: places.Add(new Home(location, gain, cost)); break;
-                }
-            }
+                places.Add(new Place(dataLoad.ReadLine()));
 
             matrix = new float[n, n];
+            string buffer;
             while ((buffer = dataLoad.ReadLine()) != null)
             {
                 string[] s = buffer.Split(' ');
@@ -65,19 +52,16 @@ namespace AgentsNecessities
                 matrix[j, i] = Distance(places[j].location, places[i].location);
             }
         }
+
         public static void Populate()
         {
-            people.Add(new Person((float)(rnd.NextDouble() / 3), (float)(rnd.NextDouble() / 2 + 0.3),
-                (float)(rnd.NextDouble() / 2 + 0.3), rnd.Next(5, 8), places[1] as Home));
-            people.Add(new Person((float)(rnd.NextDouble() / 3), (float)(rnd.NextDouble() / 2 + 0.3),
-                (float)(rnd.NextDouble() / 2 + 0.3), rnd.Next(5, 8), places[2] as Home));
-            people.Add(new Person((float)(rnd.NextDouble() / 3), (float)(rnd.NextDouble() / 2 + 0.3),
-                (float)(rnd.NextDouble() / 2 + 0.3), rnd.Next(5, 8), places[4] as Home));
-            people.Add(new Person((float)(rnd.NextDouble() / 3), (float)(rnd.NextDouble() / 2 + 0.3),
-                (float)(rnd.NextDouble() / 2 + 0.3), rnd.Next(5, 8), places[8] as Home));
-            people.Add(new Person((float)(rnd.NextDouble() / 3), (float)(rnd.NextDouble() / 2 + 0.3),
-                (float)(rnd.NextDouble() / 2 + 0.3), rnd.Next(5, 8), places[9] as Home));
+            people.Add(new Person(places[1]));
+            people.Add(new Person(places[2]));
+            people.Add(new Person(places[4]));
+            people.Add(new Person(places[8]));
+            people.Add(new Person(places[9]));
         }
+
         public static void InitializeColours()
         {
             colors = new Color[100];
@@ -97,6 +81,7 @@ namespace AgentsNecessities
                     if (matrix[i, j] > 0)
                         grp.DrawLine(Pens.Black, places[i].location, places[j].location);
         }
+
         public static void DrawPlaces()
         {
             for (int i = 0; i < n; i++)
@@ -104,13 +89,7 @@ namespace AgentsNecessities
                 Point tempPoint = new Point(places[i].location.X - 7, places[i].location.Y - 7);
                 grp.FillEllipse(new SolidBrush(Color.White), tempPoint.X, tempPoint.Y, 15, 15);
                 grp.DrawEllipse(Pens.Black, tempPoint.X, tempPoint.Y, 15, 15);
-
-                string s = "H";
-                if (places[i] is Work)
-                    s = "W";
-                if (places[i] is Restaurant)
-                    s = "R";
-                grp.DrawString(s, new Font("Arial", 10, FontStyle.Bold), new SolidBrush(Color.Black), tempPoint);
+                grp.DrawString(places[i].type, new Font("Arial", 10, FontStyle.Bold), new SolidBrush(Color.Black), tempPoint);
             }
         }
 
@@ -176,15 +155,15 @@ namespace AgentsNecessities
             {
                 paths.Add(list);
                 visited[end] = false;
-                return;
             }
-            for (int i = 0; i < n; i++)
-                if (matrix[start, i] > 0 && !visited[i])
-                {
-                    List<Place> t = new List<Place>(list);
-                    DFS(i, end, t, visited);
-                    visited[i] = false;
-                }
+            else
+                for (int i = 0; i < n; i++)
+                    if (matrix[start, i] > 0 && !visited[i])
+                    {
+                        List<Place> t = new List<Place>(list);
+                        DFS(i, end, t, visited);
+                        visited[i] = false;
+                    }
         }
 
         public static float Distance(Point p1, Point p2)

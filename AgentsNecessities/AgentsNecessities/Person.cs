@@ -10,18 +10,18 @@ namespace AgentsNecessities
         public float money, food, relaxation, happiness;
         public int speed;
         public double left, top;
-        public Home home;
+        public Place home;
 
         public Place currentLocation;
         public List<Place> destination = new List<Place>();
         public PictureBox pB;
 
-        public Person(float money, float food, float relaxation, int speed, Home home)
+        public Person(Place home)
         {
-            this.money = money;
-            this.food = food;
-            this.relaxation = relaxation;
-            this.speed = speed;
+            money = (float)(Engine.rnd.NextDouble() / 3);
+            food = (float)(Engine.rnd.NextDouble() / 2 + 0.3);
+            relaxation = (float)(Engine.rnd.NextDouble() / 2 + 0.3);
+            speed = Engine.rnd.Next(5, 8);
             left = 0; top = 0;
             this.home = home;
             currentLocation = home;
@@ -29,7 +29,7 @@ namespace AgentsNecessities
             pB = new PictureBox();
             pB.Parent = Engine.form.pictureBox1;
             pB.Size = new Size(Engine.size, Engine.size);
-            pB.Location = new Point(home.location.X - 7, home.location.Y - 7);
+            pB.Location = new Point(home.location.X - Engine.size / 2, home.location.Y - Engine.size / 2);
         }
 
         public void Do()
@@ -47,11 +47,11 @@ namespace AgentsNecessities
             happiness = (money + food + relaxation) / 3;
             pB.BackColor = Engine.colors[(int)(happiness * 100)];
 
-            //if the person reached its destination, change the stats accord to that destination
+            //if the person reached its destination, change the stats according to that destination
             //if that stat is filled up, the person selects a new destination
             if (destination.Count == 0)
             {
-                if (currentLocation is Home)
+                if (currentLocation.type == "H")
                 {
                     relaxation += currentLocation.gain;
                     food -= currentLocation.cost;
@@ -64,7 +64,7 @@ namespace AgentsNecessities
                     if (food < 0)
                         food = 0;
                 }
-                if (currentLocation is Work)
+                if (currentLocation.type == "W")
                 {
                     money += currentLocation.gain;
                     relaxation -= currentLocation.cost;
@@ -77,7 +77,7 @@ namespace AgentsNecessities
                     if (relaxation < 0)
                         relaxation = 0;
                 }
-                if (currentLocation is Restaurant)
+                if (currentLocation.type == "R")
                 {
                     food += currentLocation.gain;
                     money -= currentLocation.cost;
@@ -118,11 +118,11 @@ namespace AgentsNecessities
             List<int> indexes = new List<int>();
             if (money < food && money < relaxation)
                 for (int i = 0; i < Engine.n; i++)
-                    if (Engine.places[i] is Work)
+                    if (Engine.places[i].type == "W")
                         indexes.Add(i);
             if (food < money && food < relaxation)
                 for (int i = 0; i < Engine.n; i++)
-                    if (Engine.places[i] is Restaurant)
+                    if (Engine.places[i].type == "R")
                         indexes.Add(i);
             if (relaxation < food && relaxation < money)
                 indexes.Add(Engine.places.FindIndex(x => x.Equals(home)));

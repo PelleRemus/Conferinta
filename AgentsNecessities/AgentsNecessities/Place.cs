@@ -4,29 +4,17 @@ namespace AgentsNecessities
 {
     public class Place
     {
+        public string type;
         public Point location;
         public float gain, cost;
-        public Place(Point location, float gain, float cost)
-        {
-            this.location = location;
-            this.gain = gain;
-            this.cost = cost;
-        }
-    }
 
-    public class Home: Place
-    {
-        public Home(Point location, float gain, float cost) : base(location, gain, cost)
-        { }
-    }
-    public class Work : Place
-    {
-        public Work(Point location, float gain, float cost) : base(location, gain, cost)
-        { }
-    }
-    public class Restaurant : Place
-    {
-        public Restaurant(Point location, float gain, float cost) : base(location, gain, cost)
-        { }
+        public Place(string data)
+        {
+            string[] dataSplit = data.Split(' ');
+            type = dataSplit[0];
+            location = new Point(int.Parse(dataSplit[1]), int.Parse(dataSplit[2]));
+            gain = float.Parse(dataSplit[3]);
+            cost = float.Parse(dataSplit[4]);
+        }
     }
 }
