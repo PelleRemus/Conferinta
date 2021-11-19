@@ -6,17 +6,18 @@ namespace SymbolsEquation
     {
         static void Main(string[] args)
         {
-            Equation e = new Equation();
             Number n1 = new Number();
-            n1.values.Add(new Symbol(2, 3, Symbols.x, 1));
-            n1.values.Add(new Symbol(4, 1, Symbols.y, 1));
-            n1.values.Add(new Symbol(7, 1, Symbols.z, 1));
-            e.values.Add(n1);
+            n1.values.Add(new Symbol(5, 4, Symbols.x, 2));
+            n1.values.Add(new Symbol(Symbols.y, 3));
+            n1.values.Add(new Symbol(Symbols.z, 2));
 
             Number n2 = new Number();
-            n2.values.Add(new Symbol(2, 2, Symbols.x, 0));
-            n2.values.Add(new Symbol(1, 1, Symbols.y, 0));
-            n2.values.Add(new Symbol(2, 1, Symbols.z, 0));
+            n2.values.Add(new Symbol(3, 1, Symbols.x, 1));
+            n2.values.Add(new Symbol(Symbols.y, 5));
+            n2.values.Add(new Symbol(Symbols.z, 3));
+
+            Equation e = new Equation();
+            e.values.Add(n1);
             e.values.Add(n2);
 
             Console.WriteLine(e);

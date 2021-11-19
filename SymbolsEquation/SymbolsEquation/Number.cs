@@ -11,31 +11,31 @@ namespace SymbolsEquation
         public void Simplify()
         {
             List<Symbol> newValues = new List<Symbol>();
-            newValues.Add(new Symbol(1, 1, Symbols.Null, 0));
-            newValues.Add(new Symbol(1, 1, Symbols.x, 0));
-            newValues.Add(new Symbol(1, 1, Symbols.y, 0));
-            newValues.Add(new Symbol(1, 1, Symbols.z, 0));
+            newValues.Add(new Symbol(Symbols.Null, 0));
+            newValues.Add(new Symbol(Symbols.x, 0));
+            newValues.Add(new Symbol(Symbols.y, 0));
+            newValues.Add(new Symbol(Symbols.z, 0));
 
             foreach (Symbol symbol in values)
             {
                 symbol.Simplify();
-                if(symbol.real==0)
+                if (symbol.real == 0)
                 {
                     values = new List<Symbol>();
                     values.Add(symbol);
                     grade = "x0y0z0";
                     return;
                 }
-                newValues[(int)symbol.symbol].symbolPower += symbol.symbolPower;
+                newValues[(int)symbol.symbols].symbolsPower += symbol.symbolsPower;
 
                 int[] realValues = CalculateReal(newValues[0].real, newValues[0].realPower, symbol.real, symbol.realPower);
                 newValues[0].real = realValues[0];
                 newValues[0].realPower = realValues[1];
             }
-            grade = "x" + newValues[1].symbolPower + "y" + newValues[2].symbolPower + "z" + newValues[3].symbolPower;
+            grade = $"x{newValues[1].symbolsPower}y{newValues[2].symbolsPower}z{newValues[3].symbolsPower}";
 
             for (int i = newValues.Count - 1; i > 0; i--)
-                if (newValues[i].symbolPower == 0 || newValues[i].symbol == Symbols.Null)
+                if (newValues[i].symbolsPower == 0 || newValues[i].symbols == Symbols.Null)
                     newValues.RemoveAt(i);
             if (newValues.Count != 1 && newValues[0].real == 1)
                 newValues.RemoveAt(0);

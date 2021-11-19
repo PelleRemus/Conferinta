@@ -9,15 +9,15 @@ namespace SymbolsEquation
 
         public void Simplify()
         {
-            foreach(Number number in values)
+            foreach (Number number in values)
             {
                 number.Simplify();
                 if (number.values[0].real == 0)
                     values.Remove(number);
             }
-            for(int i=0; i<values.Count; i++)
-                for(int j=i+1; j<values.Count; j++)
-                    if(values[i].grade == values[j].grade)
+            for (int i = 0; i < values.Count; i++)
+                for (int j = i + 1; j < values.Count; j++)
+                    if (values[i].grade == values[j].grade)
                     {
                         CalculateReal(values[i], values[j]);
                         values.Remove(values[j]);
